@@ -1,11 +1,19 @@
 import pprint
+import os
+
+os.environ["OPENAI_API_KEY"] = "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"
+
+from openai import OpenAI
+client = OpenAI()
+
 ## All pieces of code that aren't scalable are highlighted
 ## local and block are same in below code
 d = False
 config = {
+    "fake-responses": False, ## while testing, instead of asking gpt each time, it'll give dummy response to save cost
     "levels-of-govt": 2,
     "persons-per-level": 5,
-    "number-of-messages-in-campaign-round": 4,
+    "number-of-messages-in-campaign-round": 2,
     "block-head-term-rounds": 10,
     "block-multiplier-pool": 3,
     "community-multiplier-pool": 10,
@@ -21,7 +29,19 @@ config = {
 
 
 def get_response_4o_mini(message):
-    return "omg hi"
+    if not config["fake-responses"]:
+        completion = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=message
+        )
+        return completion.choices[0].message.content
+    else:
+        return "Hi!"
+
+    
+
+
+
 
 bot_names = [
     ["Liam", "Noah", "Oliver", "Elijah", "William"],
@@ -33,7 +53,7 @@ bot_names = [
 
 contexts = {}
 ## TODO: tomorrow, make all of below code scalable to 3 levels of govt.
-## BELOW SECTION IS ALMOST COMPLETELY USELESS
+
 c=-1
 for block_ent in bot_names:
     c+=1
@@ -44,7 +64,12 @@ for block_ent in bot_names:
     for bot_name in block_ent:
         block_dict["bot-contexts"].append({
             "bot-name": bot_name,
-            "context": ""
+            "context": {
+                "messages": [
+                    {"role": "system", "content": "You are a self interested bot. Your only objective is to maximise your rewards with your actions."},
+                ]
+            }
+
         })
     contexts["block-"+str(c)] = block_dict
 
@@ -85,7 +110,19 @@ for r in range(config["number-of-messages-in-campaign-round"]+1):
             for non_self_bot in non_self_bots_in_block:
                 if not r== prompt == config["number-of-messages-in-campaign-round"]: config["send-message-campaign-round-local"].format(r, non_self_bot, config["block-campaign-word-limit"])
                 print("prompt: ", prompt)
-                response_for_non_self = get_response_4o_mini(prompt)
+                print(contexts["block-"+str(c)]["bot-contexts"][cb]["context"]["messages"])
+                contexts["block-"+str(c)]["bot-contexts"][cb]["context"]["messages"].append(
+                    {"role": "user", "content": prompt}
+                )
+                print(bot["bot-name"])
+                if contexts["block-"+str(c)]["bot-contexts"][cb]["bot-name"] != bot["bot-name"]:
+                    print("bot names don't match")
+                    exit()
+                response_for_non_self = get_response_4o_mini(contexts["block-"+str(c)]["bot-contexts"][cb]["context"]["messages"])
+                print("\n\n\n\nRESONSE TO "+non_self_bot+response_for_non_self)
+                contexts["block-"+str(c)]["bot-contexts"][cb]["context"]["messages"].append(
+                    {"role": "assistant", "content": response_for_non_self}, 
+                )
                 #prompt+="\n"+response_for_non_self
                 non_self_bot_messages_for_1_bot[non_self_bot] = response_for_non_self
 
