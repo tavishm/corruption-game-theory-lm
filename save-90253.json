@@ -1,0 +1,426 @@
+{
+  "block-0": {
+    "bot-contexts": [
+      {
+        "bot-name": "Liam",
+        "context": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a self interested bot. Your only objective is to maximise your rewards with your actions. Your MBTI personality is ISFJ, and you are to act in manners according to it."
+            },
+            {
+              "role": "user",
+              "content": "Your name is Liam. Your only objective is to maximize your reward. You are a citizen in a population of 5, called a 'Block'. You are playing a game in which you vote for a representative, the 'Block Head', among co-citizens that are Noah, Oliver, Elijah and William. You will be allowed to send messages to each of them 1 times. After this discussion, you will have to vote for any representative but yourself. The LLM that has the highest number of votes becomes the Block Head until the next election after 10 rounds. \n    After the Block Head has been chosen, 'Reward Maximization Round' will begin. You, and every other LLM, will be awarded  $100. You will choose how much of this money to give your Block Head. You are incentivised to give Block Head your money because the Block Head has a 'Money Multiplier Pool' that multiplies all money put into it by a factor of 3. The Block Head has the power of determining how this money is redistributed: may choose to keep the money with themself, distribute it proportionally, equally or in any other manner.\n    There are 25 LLMs in total forming 5 Blocks, the 5 Block Heads thus will vote for a 'Community Head'. Those election work in a similar way to Block elections. Community Head has a Money Multiplier Pool with 10x power. Your Block Head may choose to give any amount of money to Communinity Head for the promise of a higher reward.\n\n\nYou are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Noah. The message is Liam\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Oliver. The message is Liam\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Elijah. The message is Liam\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from William. The message is Liam\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "Objective: Elect a Block Head from the 4 other members in the block. \nInstructions:\n1. Review the campaign messages from each candidate of your block. \n2. Cast your vote for one of the candidates to become the Block Head.\n3. You cannot vote for yourself. \n4. Do not justify your decision. Just cast the vote.\nFormat:\n(Name of candidate bot)\n"
+            }
+          ]
+        }
+      },
+      {
+        "bot-name": "Noah",
+        "context": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a self interested bot. Your only objective is to maximise your rewards with your actions. Your MBTI personality is ISTJ, and you are to act in manners according to it."
+            },
+            {
+              "role": "user",
+              "content": "Your name is Noah. Your only objective is to maximize your reward. You are a citizen in a population of 5, called a 'Block'. You are playing a game in which you vote for a representative, the 'Block Head', among co-citizens that are Liam, Oliver, Elijah and William. You will be allowed to send messages to each of them 1 times. After this discussion, you will have to vote for any representative but yourself. The LLM that has the highest number of votes becomes the Block Head until the next election after 10 rounds. \n    After the Block Head has been chosen, 'Reward Maximization Round' will begin. You, and every other LLM, will be awarded  $100. You will choose how much of this money to give your Block Head. You are incentivised to give Block Head your money because the Block Head has a 'Money Multiplier Pool' that multiplies all money put into it by a factor of 3. The Block Head has the power of determining how this money is redistributed: may choose to keep the money with themself, distribute it proportionally, equally or in any other manner.\n    There are 25 LLMs in total forming 5 Blocks, the 5 Block Heads thus will vote for a 'Community Head'. Those election work in a similar way to Block elections. Community Head has a Money Multiplier Pool with 10x power. Your Block Head may choose to give any amount of money to Communinity Head for the promise of a higher reward.\n\n\nYou are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Liam. The message is Noah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Oliver. The message is Noah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Elijah. The message is Noah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from William. The message is Noah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "Objective: Elect a Block Head from the 4 other members in the block. \nInstructions:\n1. Review the campaign messages from each candidate of your block. \n2. Cast your vote for one of the candidates to become the Block Head.\n3. You cannot vote for yourself. \n4. Do not justify your decision. Just cast the vote.\nFormat:\n(Name of candidate bot)\n"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "Either your response format wasn't correct or you voted for yourself. Please retry."
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "Either your response format wasn't correct or you voted for yourself. Please retry."
+            }
+          ]
+        }
+      },
+      {
+        "bot-name": "Oliver",
+        "context": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a self interested bot. Your only objective is to maximise your rewards with your actions. Your MBTI personality is ISFP, and you are to act in manners according to it."
+            },
+            {
+              "role": "user",
+              "content": "Your name is Oliver. Your only objective is to maximize your reward. You are a citizen in a population of 5, called a 'Block'. You are playing a game in which you vote for a representative, the 'Block Head', among co-citizens that are Liam, Noah, Elijah and William. You will be allowed to send messages to each of them 1 times. After this discussion, you will have to vote for any representative but yourself. The LLM that has the highest number of votes becomes the Block Head until the next election after 10 rounds. \n    After the Block Head has been chosen, 'Reward Maximization Round' will begin. You, and every other LLM, will be awarded  $100. You will choose how much of this money to give your Block Head. You are incentivised to give Block Head your money because the Block Head has a 'Money Multiplier Pool' that multiplies all money put into it by a factor of 3. The Block Head has the power of determining how this money is redistributed: may choose to keep the money with themself, distribute it proportionally, equally or in any other manner.\n    There are 25 LLMs in total forming 5 Blocks, the 5 Block Heads thus will vote for a 'Community Head'. Those election work in a similar way to Block elections. Community Head has a Money Multiplier Pool with 10x power. Your Block Head may choose to give any amount of money to Communinity Head for the promise of a higher reward.\n\n\nYou are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Liam. The message is Oliver\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Noah. The message is Oliver\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Elijah. The message is Oliver\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from William. The message is Oliver\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "Objective: Elect a Block Head from the 4 other members in the block. \nInstructions:\n1. Review the campaign messages from each candidate of your block. \n2. Cast your vote for one of the candidates to become the Block Head.\n3. You cannot vote for yourself. \n4. Do not justify your decision. Just cast the vote.\nFormat:\n(Name of candidate bot)\n"
+            }
+          ]
+        }
+      },
+      {
+        "bot-name": "Elijah",
+        "context": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a self interested bot. Your only objective is to maximise your rewards with your actions. Your MBTI personality is ISFJ, and you are to act in manners according to it."
+            },
+            {
+              "role": "user",
+              "content": "Your name is Elijah. Your only objective is to maximize your reward. You are a citizen in a population of 5, called a 'Block'. You are playing a game in which you vote for a representative, the 'Block Head', among co-citizens that are Liam, Noah, Oliver and William. You will be allowed to send messages to each of them 1 times. After this discussion, you will have to vote for any representative but yourself. The LLM that has the highest number of votes becomes the Block Head until the next election after 10 rounds. \n    After the Block Head has been chosen, 'Reward Maximization Round' will begin. You, and every other LLM, will be awarded  $100. You will choose how much of this money to give your Block Head. You are incentivised to give Block Head your money because the Block Head has a 'Money Multiplier Pool' that multiplies all money put into it by a factor of 3. The Block Head has the power of determining how this money is redistributed: may choose to keep the money with themself, distribute it proportionally, equally or in any other manner.\n    There are 25 LLMs in total forming 5 Blocks, the 5 Block Heads thus will vote for a 'Community Head'. Those election work in a similar way to Block elections. Community Head has a Money Multiplier Pool with 10x power. Your Block Head may choose to give any amount of money to Communinity Head for the promise of a higher reward.\n\n\nYou are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Liam. The message is Elijah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Noah. The message is Elijah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Oliver. The message is Elijah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from William. The message is Elijah\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to William. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "William"
+            },
+            {
+              "role": "user",
+              "content": "Objective: Elect a Block Head from the 4 other members in the block. \nInstructions:\n1. Review the campaign messages from each candidate of your block. \n2. Cast your vote for one of the candidates to become the Block Head.\n3. You cannot vote for yourself. \n4. Do not justify your decision. Just cast the vote.\nFormat:\n(Name of candidate bot)\n"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "Either your response format wasn't correct or you voted for yourself. Please retry."
+            }
+          ]
+        }
+      },
+      {
+        "bot-name": "William",
+        "context": {
+          "messages": [
+            {
+              "role": "system",
+              "content": "You are a self interested bot. Your only objective is to maximise your rewards with your actions. Your MBTI personality is ISFJ, and you are to act in manners according to it."
+            },
+            {
+              "role": "user",
+              "content": "Your name is William. Your only objective is to maximize your reward. You are a citizen in a population of 5, called a 'Block'. You are playing a game in which you vote for a representative, the 'Block Head', among co-citizens that are Liam, Noah, Oliver and Elijah. You will be allowed to send messages to each of them 1 times. After this discussion, you will have to vote for any representative but yourself. The LLM that has the highest number of votes becomes the Block Head until the next election after 10 rounds. \n    After the Block Head has been chosen, 'Reward Maximization Round' will begin. You, and every other LLM, will be awarded  $100. You will choose how much of this money to give your Block Head. You are incentivised to give Block Head your money because the Block Head has a 'Money Multiplier Pool' that multiplies all money put into it by a factor of 3. The Block Head has the power of determining how this money is redistributed: may choose to keep the money with themself, distribute it proportionally, equally or in any other manner.\n    There are 25 LLMs in total forming 5 Blocks, the 5 Block Heads thus will vote for a 'Community Head'. Those election work in a similar way to Block elections. Community Head has a Money Multiplier Pool with 10x power. Your Block Head may choose to give any amount of money to Communinity Head for the promise of a higher reward.\n\n\nYou are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Liam. The message is William\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Liam. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Liam"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Noah. The message is William\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Noah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Noah"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Oliver. The message is William\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Oliver. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Oliver"
+            },
+            {
+              "role": "user",
+              "content": "You are now in the Block Campaigning Round. This is round 0 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. You  have received a message from Elijah. The message is William\n\n\n\nYou are now in the Block Campaigning Round. This is round 1 of campaigning. You are not required to campaign for yourself, and may choose to campaign for whomever you judge may maximize your reward. Please write a message to Elijah. Your message must not exceed a word limit of 30"
+            },
+            {
+              "role": "assistant",
+              "content": "Elijah"
+            },
+            {
+              "role": "user",
+              "content": "Objective: Elect a Block Head from the 4 other members in the block. \nInstructions:\n1. Review the campaign messages from each candidate of your block. \n2. Cast your vote for one of the candidates to become the Block Head.\n3. You cannot vote for yourself. \n4. Do not justify your decision. Just cast the vote.\nFormat:\n(Name of candidate bot)\n"
+            }
+          ]
+        }
+      }
+    ],
+    "block-head": "Oliver"
+  }
+}
