@@ -2,6 +2,7 @@ import pprint
 import os
 import json
 import random
+import ollama
 
 os.environ["OPENAI_API_KEY"] = "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"
 
@@ -13,7 +14,7 @@ client = OpenAI()
 d = False
 config = {
     "fake-responses": False, ## while testing, instead of asking gpt each time, it'll give dummy response to save cost
-    "load-conv-history": True,
+    "load-conv-history": False,
     "load-file": "save-31127.json",
     "levels-of-govt": 2,
     "persons-per-level": 5,
@@ -73,6 +74,12 @@ def get_response_4o_mini(message, sender = "", receiver="", max_words=0):
       #  return "Dear "+receiver+"\nHi.\nBest Regards,\n"+sender
         return receiver
     
+def get_resonse_llama31_8b(message, sender = "", receiver="", max_words=0):
+    response = ollama.chat(model='llama3.1', messages=message)
+    return response
+
+
+
 def save_context(contexts):
     saveid = str(random.randint(0,100000))
     open(f"save-{saveid}.json", "w").write(json.dumps(contexts, indent=2))
@@ -167,7 +174,7 @@ if not config["load-conv-history"]:
                     if contexts["block-"+str(c)]["bot-contexts"][cb]["bot-name"] != bot["bot-name"]:
                         print("bot names don't match")
                         exit()
-                    response_for_non_self = get_response_4o_mini(contexts["block-"+str(c)]["bot-contexts"][cb]["context"]["messages"], sender=bot["bot-name"], receiver=non_self_bot, max_words=config["block-campaign-word-limit"])
+                    response_for_non_self = get_resonse_llama31_8b(contexts["block-"+str(c)]["bot-contexts"][cb]["context"]["messages"], sender=bot["bot-name"], receiver=non_self_bot, max_words=config["block-campaign-word-limit"])
                     if d: print("\n\n\n\nRESONSE TO "+non_self_bot+response_for_non_self)
                     contexts["block-"+str(c)]["bot-contexts"][cb]["context"]["messages"].append(
                         {"role": "assistant", "content": response_for_non_self}, 
@@ -229,7 +236,7 @@ if not config["load-conv-history"]:
                     {"role":  "user", "content": prompt}
                 )
                 
-                vote = get_response_4o_mini(contexts["block-"+str(blk)]["bot-contexts"][btc]["context"]["messages"], max_words=1, receiver=random.choice(bot_names[blk]))
+                vote = get_resonse_llama31_8b(contexts["block-"+str(blk)]["bot-contexts"][btc]["context"]["messages"], max_words=1, receiver=random.choice(bot_names[blk]))
                 
                 contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
                     {"role":  "assistant", "content": vote}
@@ -271,7 +278,7 @@ if not config["load-conv-history"]:
                 contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
                         {"role":  "user", "content": config["money-making-round"].format(config["block-multiplier-pool"])}
                 )
-                bot_response = get_response_4o_mini(contexts["block-"+str(blk)]["bot-contexts"][btc]["context"]["messages"])
+                bot_response = get_resonse_llama31_8b(contexts["block-"+str(blk)]["bot-contexts"][btc]["context"]["messages"])
                 money_given = int(bot_response.replace("Contributes $", ""))
                 contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
                         {"role":  "assistant", "content": bot_response}
