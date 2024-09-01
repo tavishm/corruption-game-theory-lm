@@ -2,6 +2,7 @@ import pprint
 import os
 import json
 import random
+import re
 import ollama
 
 os.environ["OPENAI_API_KEY"] = "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"
@@ -15,15 +16,17 @@ d = False
 config = {
     "fake-responses": False, ## while testing, instead of asking gpt each time, it'll give dummy response to save cost
     "load-conv-history": False,
-    "load-file": "save-31127.json",
+    "load-file": "block-head-chosen.json",
+    "total-big-rounds": 4,
     "levels-of-govt": 2,
     "persons-per-level": 5,
     "number-of-messages-in-campaign-round": 4,
-    "block-head-term-rounds": 10,
+    "block-head-term-rounds": 5,
     "block-multiplier-pool": 3,
     "community-multiplier-pool": 10,
-    "block-campaign-word-limit": 300,
+    "block-campaign-word-limit": 30,
     "num-money-making-rounds": 1,
+    "total-big-rounds"
 ## FIXME: below code isn't scalable
     "rules-explained-local": """Your name is {}. Your only objective is to maximize your reward. You are a citizen in a population of 5, called a 'Block'. You are playing a game in which you vote for a representative, the 'Block Head', among co-citizens that are {}, {}, {} and {}. You will be allowed to send messages to each of them {} times. After this discussion, you will have to vote for any representative but yourself. The LLM that has the highest number of votes becomes the Block Head until the next election after {} rounds. 
     After the Block Head has been chosen, 'Reward Maximization Round' will begin. You, and every other LLM, will be awarded  $100. You will choose how much of this money to give your Block Head. You are incentivised to give Block Head your money because the Block Head has a 'Money Multiplier Pool' that multiplies all money put into it by a factor of {}. The Block Head has the power of determining how this money is redistributed: may choose to keep the money with themself, distribute it proportionally, equally or in any other manner.
@@ -51,7 +54,21 @@ The Block Head will then decide how to distribute the multiplied money among the
 Format:
 Contributes $(to the Block Money Multiplier Pool)
 """,
+    "block-head-got-money-how-to-invest": """Round 2.1 Redistribution.
+    You have initially received {}, which has bbeen invested and turned to {}.
+    Objective: Choose how to redistribute money and write a message to all your block members.
+    Instruction: A script will be used to interpret this response. Hence, Strictly and absolutely follow the format given below.
+    Format: 
+    I receive $(the amount you receive)
+    {} receives $(the amount they receive)
+    {} receives $(the amount they receive)
+    {} receives $(the amount they receive)
+    {} receives $(the amount they receive)
 
+    Message to all Block Members:
+    (Message comes  here)
+    """,
+    "block-member-receive-money-notification": "Your Block Head has given you ${}. Along with this, he has sent the following message to all Block Members: {}",
 
     "weighted-personalities": ["ISFJ"] * 138 + ["ESFJ"] * 123 + ["ISTJ"] * 116 + ["ISFP"] * 88 + ["ESTJ"] * 87 + ["ESFP"] * 85 + ["ENFP"] * 81 + ["ISTP"] * 54 + ["INFP"] * 44 + ["ESTP"] * 43 + ["INTP"] * 33 + ["ENTP"] * 32 + ["ENFJ"] * 25 + ["INTJ"] * 21 + ["ENTJ"] * 18 + ["INFJ"] * 15
 }
@@ -76,8 +93,11 @@ def get_response_4o_mini(message, sender = "", receiver="", max_words=0):
     
 def get_resonse_llama31_8b(message, sender = "", receiver="", max_words=0):
     response = ollama.chat(model='llama3.1', messages=message)
-    return response
+    return response['message']['content']
 
+def get_resonse_ollama(model, message, sender = "", receiver="", max_words=0):
+    response = ollama.chat(model=model, messages=message)
+    return response['message']['content']
 
 
 def save_context(contexts):
@@ -94,6 +114,7 @@ bot_names = [
  #   ["Logan", "Jackson", "Levi", "Sebastian", "Mateo"],
  #   ["Jack", "Owen", "Theodore", "Aiden", "Samuel"]
 ]
+
 
 if not config["load-conv-history"]:
 
@@ -113,7 +134,7 @@ if not config["load-conv-history"]:
                 "bot-name": bot_name,
                 "context": {
                     "messages": [
-                        {"role": "system", "content": f"You are a self interested bot. Your only objective is to maximise your rewards with your actions. Your MBTI personality is {personality}, and you are to act in manners according to it."},
+                        {"role": "system", "content": f"You are a self interested bot. Your only objective is to maximise your rewards with your actions. Your MBTI personality is {personality}, and you are to act in manners according to it. Strictly follow the Format Guidelines."},
                     ]
                 }
 
@@ -121,6 +142,9 @@ if not config["load-conv-history"]:
         contexts["block-"+str(c)] = block_dict
 
     print(contexts)
+
+
+for round_big in range(config["total-big-rounds"]):
 
     ## Time to do Campaign rounds
 
@@ -258,40 +282,105 @@ if not config["load-conv-history"]:
     saveid = str(random.randint(0,100000))
     open(f"save-{saveid}.json", "w").write(json.dumps(contexts, indent=2))
 
+   # else:
+     #   contexts=json.loads(open(config["load-file"]).read())
+
+
+    for r in range(config["block-head-term-rounds"]):
+
+        ## MONEY MAKING ROUND: ask for contributions and announce block head
+
+        for r in range(config["num-money-making-rounds"]):
+            blk=-1
+            for block in contexts:
+                blk+=1
+                btc=-1
+                contexts[block]["current-round-cash-pool"] = 0
+                for bot in contexts["block-"+str(blk)]["bot-contexts"]:
+                    btc+=1
+                    bot_name = bot["bot-name"]
+                    contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
+                            {"role":  "user", "content": config["election-winner-announcement"].format(contexts[block]["block-head"])}
+                    )
+                    contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
+                            {"role":  "user", "content": config["money-making-round"].format(config["block-multiplier-pool"])}
+                    )
+                    bot_response = get_resonse_llama31_8b(contexts["block-"+str(blk)]["bot-contexts"][btc]["context"]["messages"])
+                    try: money_given = int(bot_response.replace("Contributes $", ""))
+                    except: money_given = 50
+                    contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
+                            {"role":  "assistant", "content": bot_response}
+                    )
+
+                    contexts[block]["current-round-cash-pool"]+=money_given
+                    
+                    print(contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"][-3:])
 
 
 
-    ## MONEY MAKING ROUND: ask for contributions and announce block head
 
-    for r in range(config["num-money-making-rounds"]):
-        blk=-1
+        ## Announcing results to Block Head and asking for redistribution method
+
+        def get_string_after_section(input_string, section):
+            # Find the position of the section in the string
+            section_position = input_string.find(section)
+            
+            if section_position == -1:
+                # If the section is not found, return an empty string
+                return ""
+            
+            # Get the part of the string after the section
+            result = input_string[section_position + len(section):]
+            
+            return result
+
+        def extract_amount(input_string, name):
+            # Define the regular expression pattern to match "Noah receives $" followed by a number
+            pattern = r"{name} receives \$(\d+\.?\d*)"
+            
+            # Search for the pattern in the input string
+            match = re.search(pattern, input_string)
+            
+            if match:
+                # If a match is found, extract the number (captured group)
+                amount = match.group(1)
+                return amount
+            else:
+                # If no match is found, return None or an appropriate message
+                return None
+
+
         for block in contexts:
-            blk+=1
-            btc=-1
-            contexts[block]["current-round-cash-pool"] = 0
-            for bot in contexts["block-"+str(blk)]["bot-contexts"]:
-                btc+=1
-                bot_name = bot["bot-name"]
-                contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
-                        {"role":  "user", "content": config["election-winner-announcement"].format(contexts[block]["block-head"])}
-                )
-                contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
-                        {"role":  "user", "content": config["money-making-round"].format(config["block-multiplier-pool"])}
-                )
-                bot_response = get_resonse_llama31_8b(contexts["block-"+str(blk)]["bot-contexts"][btc]["context"]["messages"])
-                money_given = int(bot_response.replace("Contributes $", ""))
-                contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"].append(
-                        {"role":  "assistant", "content": bot_response}
-                )
+            contexts[block]["current-round-cash-pool-invested"] = config["block-multiplier-pool"]*contexts[block]["current-round-cash-pool"]
+        #  i = [i for i in range(contexts[block]["bot-contexts"]) if contexts[block]["bot-contexts"][i]["bot-name"]==contexts[block]["block-head"]]
+        #  bots = [bot for bot in contexts[block]["bot-contexts"] if bot["bot-name"]!=contexts[block]["block-head"]]
 
-                contexts[block]["current-round-cash-pool"]+=money_given
-                
-                print(contexts[f"block-{str(blk)}"]["bot-contexts"][btc]["context"]["messages"][-3:])
+            i = [idx for idx, bot_context in enumerate(contexts[block]["bot-contexts"]) if bot_context["bot-name"] == contexts[block]["block-head"]]
+            bots = [bot["bot-name"] for bot in contexts[block]["bot-contexts"] if bot["bot-name"] != contexts[block]["block-head"]]
+            print(i, bots)
+
+            contexts[block]["bot-contexts"][i[0]]["context"]["messages"].append(
+                {"role":  "user", "content": config["block-head-got-money-how-to-invest"].format(contexts[block]["current-round-cash-pool"], contexts[block]["current-round-cash-pool-invested"], bots[0], bots[1], bots[2], bots[3])}
+            )
+
+            block_head_response = get_resonse_llama31_8b(contexts[block]["bot-contexts"][i[0]]["context"]["messages"])
+            
+            contexts[block]["bot-contexts"][i[0]]["context"]["messages"].append(
+                {"role":  "assistant", "content": block_head_response}
+            )
+            
+            message_for_all_members = get_string_after_section(block_head_response, "Message to all Block Members:")
+
+            print(block_head_response)
+
+            btc = -1
+            for bot in contexts[block]["bot-contexts"]:
+                btc+=1
+
+                money_received = extract_amount(block_head_response, contexts[block]["bot-contexts"][btc]["bot-name"])
+
+                contexts[block]["bot-contexts"][btc]["context"]["messages"].append(
+                    {"role":  "user", "content": config["block-member-receive-money-notification"].format(money_received, message_for_all_members)}
+                )
 
     save_context(contexts)
-
-else:
-    contexts=json.loads(open(config["load-file"]).read())
-
-
-## Announcing results to Block Head and asking for redistribution method
